@@ -52,19 +52,19 @@ public class HexUI {
                 panel.add(gamePiece[i][j]);
             }
         }
-        JLabel[] text = new JLabel[SIDE];
+        JLabel[] letterText = new JLabel[SIDE];
         for (int i = 0; i < SIDE; i++) {
-            text[i] = new JLabel(String.valueOf((char)('A' + i)));
-            text[i].setForeground(Color.BLUE);
-            text[i].setBounds(40 + 38 * i, 5, 34, 40);
-            panel.add(text[i]);
+            letterText[i] = new JLabel(String.valueOf((char)('A' + i)));
+            letterText[i].setForeground(Color.BLUE);
+            letterText[i].setBounds(40 + 38 * i, 5, 34, 40);
+            panel.add(letterText[i]);
         }
-        JLabel[] text2 = new JLabel[11];
+        JLabel[] numberText = new JLabel[11];
         for (int i = 0; i < SIDE; i++) {
-            text2[i] = new JLabel(String.valueOf(i + 1));
-            text2[i].setForeground(Color.RED);
-            text2[i].setBounds(10 + 19 * i, 30 + 34 * i, 34, 40);
-            panel.add(text2[i]);
+            numberText[i] = new JLabel(String.valueOf(i + 1));
+            numberText[i].setForeground(Color.RED);
+            numberText[i].setBounds(10 + 19 * i, 30 + 34 * i, 34, 40);
+            panel.add(numberText[i]);
         }
         //菜单***************************************
 //        menuBar = new JMenuBar();
@@ -85,16 +85,16 @@ public class HexUI {
 
     public static void setPlayer1(HexUI game) {
         if (game.player1Type == 0) game.player1 = new PlayerObject(1, game);
-        else if (game.player1Type == 1) game.player1 = new BeeGameAI(1, game);
+        else if (game.player1Type == 1) game.player1 = new PockmarksAI(1, game);
     }
 
     public static void setPlayer2(HexUI game) {
         if (game.player2Type == 0) game.player2 = new PlayerObject(2, game);
-        else if (game.player2Type == 1) game.player2 = new BeeGameAI(2, game);
+        else if (game.player2Type == 1) game.player2 = new PockmarksAI(2, game);
     }
 
     public static void main(String[] args) {
-        System.out.println("1:玩家先手 电脑后手\n2:电脑先手 玩家后手\n3:双人博弈\n4:机机大战");
+        System.out.println("1:玩家先手 电脑后手\n2:电脑先手 玩家后手\n3:双人博弈\nOther:机机大战");
         Scanner sc = new Scanner(System.in);
         int mode = sc.nextInt();
         if (mode == 1 || mode == 3) {
@@ -113,7 +113,7 @@ public class HexUI {
     public void run() {
         while (game) {//Loop the game
             if (!checkForWinner()) {
-                GameAction.getPlayer((currentPlayer % 2) + 1, this);
+                System.out.println("当前玩家："+GameAction.getPlayer((currentPlayer % 2) + 1, this));
                 if (GameAction.getPlayer(currentPlayer, this) == null) {
                     System.out.println("为空");
                 }

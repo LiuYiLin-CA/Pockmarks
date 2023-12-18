@@ -10,7 +10,7 @@ import java.math.*;
 import java.util.*;
 
 
-public class BeeGameAI implements PlayingEntity {
+public class PockmarksAI implements PlayingEntity {
     private final int RED = 1, BLUE = 2, EMPTY = 0;
     private final int MAX_DEPTH = 3;
     private final int BEAM_SIZE = 6;
@@ -26,7 +26,7 @@ public class BeeGameAI implements PlayingEntity {
     private boolean skipMove = false;
     private EvaluationNode[][] nodesArray;
 
-    public BeeGameAI(int team, HexUI game) {
+    public PockmarksAI(int team, HexUI game) {
         this.team = team;
         this.game = game;
         if (team == 1) {
